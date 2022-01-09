@@ -5,7 +5,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#tabla_socios').DataTable( {
+        $('#tabla_prestamos').DataTable( {
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
             }
@@ -24,7 +24,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         method: "POST",
-                        url   : "{{url('/socios')}}/"+id,
+                        url   : "{{url('/prestamos')}}/"+id,
                         data  : {
                             _token: "{{csrf_token()}}",
                             _method: "delete",
@@ -40,37 +40,33 @@
     } );
     </script>
 
-    <h1>Socios</h1>
+    <h1>Prestamos</h1>
 
-    @if(count($socios)>0)
+    @if(count($prestamos)>0)
         <a href=" {{url('/')}}" class="btn btn-primary">Inicio</a>
-        <a href=" {{url('/socios/create')}}" class="btn btn-primary">Nuevo Socio</a>
-        <a href=" {{route('imprimir')}}" class="btn btn-primary">Imprimir PDF</a>
-        
-        <table id="tabla_socios" class="table table-striped table-bordered">
+        <a href=" {{url('/prestamos/create')}}" class="btn btn-primary">Nuevo prestamo</a>
+        <table id="tabla_prestamos" class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Teléfono</th>
-                    <th>Correo electrónico</th>
-                    <th>DNI</th>
+                    <th>ID Socio</th>
+                    <th>ID Libro</th>
+                    <th>Fecha préstamo</th>
+                    <th>Fecha devolución</th>
                     <th>Editar</th>
                     <th>Borrar</th>
 
                 </tr>
             </thead>
             <tbody>
-                @foreach($socios as $socio)
-                    <tr data-id='{{$socio->id}}'>
-                        <td>{{$socio->id}}</td>
-                        <td>{{$socio->nombre}}</td>
-                        <td>{{$socio->apellidos}}</td>
-                        <td>{{$socio->telefono}}</td>
-                        <td>{{$socio->email}}</td>
-                        <td>{{$socio->dni}}</td>
-                        <td><a href="{{url('/socios')}}/{{$socio->id}}/edit"><img width="32px" src="https://img.icons8.com/cotton/2x/000000/edit.png"></a></td>              
+                @foreach($prestamos as $prestamo)
+                    <tr data-id='{{$prestamo->id}}'>
+                        <td>{{$prestamo->id}}</td>
+                        <td>{{$prestamo->id_socio}}</td>
+                        <td>{{$prestamo->id_libro}}</td>
+                        <td>{{$prestamo->fecha_prestamo}}</td>
+                        <td>{{$prestamo->fecha_devolucion}}</td>
+                        <td><a href="{{url('/prestamos')}}/{{$prestamo->id}}/edit"><img width="32px" src="https://img.icons8.com/cotton/2x/000000/edit.png"></a></td>              
                         <td><a href="{{ '#' }}"  class='borrar btn btn-danger '>Borrar</a>
 
                     </tr>
@@ -78,7 +74,7 @@
             </tbody>
         </table>
     @else
-        <h1>No hay Socios</h1>
+        <h1>No hay prestamos</h1>
     @endif
 
     @endsection

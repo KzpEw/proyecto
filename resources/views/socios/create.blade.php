@@ -18,10 +18,6 @@
     @csrf
     @method("POST")
         <div class="form-group">
-            <label for="id">ID</label>
-            <input type="text" class="form-control" id="id" name="id" placeholder="id" value="{{old('id')}}">
-        </div>
-        <div class="form-group">
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" value="{{old('nombre')}}">
         </div>

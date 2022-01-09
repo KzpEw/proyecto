@@ -3,83 +3,73 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prestamo;
+use App\Models\Socio;
+use App\Models\Libro;
 use Illuminate\Http\Request;
 
 class PrestamoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $prestamos = Prestamo::all();
+        return view('prestamos.index', compact('prestamos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $socios = Socio::all();
+        $libros = Libro::all();
+        return view('prestamos.create', compact('socios', 'libros'));
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'id_socio'                => 'required',
+            'id_libro'                => 'required',
+            'fecha_prestamo'          => 'required',
+            'fecha_devolucion'        => 'required',
+        ]);
+
+        Prestamo::create($request->all());
+        $correo = new MailMailable;
+        Mail::to('{{$socios->email}}')->send($correo);
+
+        return redirect()->route('prestamos.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Prestamo  $prestamo
-     * @return \Illuminate\Http\Response
-     */
     public function show(Prestamo $prestamo)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Prestamo  $prestamo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Prestamo $prestamo)
+    public function edit($id)
     {
-        //
+        $socios = Socio::all();
+        $libros = Libro::all();
+        $prestamos = Prestamo::find($id);
+        return view('prestamos.edit', compact('prestamos', 'socios', 'libros'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Prestamo  $prestamo
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Prestamo $prestamo)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'id_socio'                => 'required',
+            'id_libro'                => 'required',
+            'fecha_prestamo'          => 'required',
+            'fecha_devolucion'        => 'required',
+        ]);
+
+        $prestamos = Prestamo::find($id);
+        $prestamos->update($request->all());
+
+        return redirect('/prestamos');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Prestamo  $prestamo
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Prestamo $prestamo)
     {
-        //
+        Prestamo::find($prestamo->id)->delete();
+        return redirect()->route('prestamos.index');
     }
 }

@@ -43,9 +43,8 @@
     <h1>Libros</h1>
 
     @if(count($libros)>0)
-
-        <a href=" {{url('/libros/create')}}" class="btn btn-primary">Nuevo libro</a>
         <a href=" {{url('/')}}" class="btn btn-primary">Inicio</a>
+        <a href=" {{url('/libros/create')}}" class="btn btn-primary">Nuevo libro</a>
         <table id="tabla_libros" class="table table-striped table-bordered">
             <thead>
                 <tr>

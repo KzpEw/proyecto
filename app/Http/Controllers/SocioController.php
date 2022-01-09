@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Socio;
 use Illuminate\Http\Request;
 
+use App\Mail\MailMailable;
+use Illuminate\Support\Facades\Mail;
+
 class SocioController extends Controller
 {
     public function index()
@@ -12,7 +15,12 @@ class SocioController extends Controller
         $socios = Socio::all();
         return view('socios.index', compact('socios'));
     }
-
+    function imprimir(){
+        $socios = Socio::all();
+        $data = compact('socios');
+        $pdf = \PDF::loadView('pdf.socio_pdf', $data);
+        return $pdf->download('ejemplo.pdf');
+    }
     public function create()
     {
         return view('socios.create');
@@ -65,4 +73,14 @@ class SocioController extends Controller
         Socio::find($socio->id)->delete();
         return redirect()->route('socios.index');
     }
+    
+    /*
+    public function sendemail(){
+        $email = Socio::find('{{$socio->email}}');
+        Mail::to($email)->send(new MailMailable);
+        return response()->json([
+            'message' => 'Email enviado.'
+        ], Response::HTTP_OK);
+    }
+    */
 }
