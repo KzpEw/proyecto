@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Mail\MailMailable;
 use Illuminate\Support\Facades\Mail;
+use App\Rules\dniValidation;
 
 class SocioController extends Controller
 {
@@ -31,8 +32,8 @@ class SocioController extends Controller
         $validated = $request->validate([
             'nombre'       => 'required',
             'apellidos'    => 'required',
-            'email'        => 'required',
-            'dni'          => 'required|min:9|max:9',
+            'email'        => 'required|email',
+            'dni'          => ['required', new dniValidation()],
             'telefono'     => 'required',
         ]);
 
@@ -56,8 +57,8 @@ class SocioController extends Controller
         $validated = $request->validate([
             'nombre'       => 'required',
             'apellidos'    => 'required',
-            'email'        => 'required',
-            'dni'          => 'required|min:9|max:9',
+            'email'        => 'required|email',
+            'dni'          => ['required', new dniValidation()],
             'telefono'     => 'required',
         ]);
 
@@ -80,7 +81,7 @@ class SocioController extends Controller
         Mail::to($email)->send(new MailMailable);
         return response()->json([
             'message' => 'Email enviado.'
-        ], Response::HTTP_OK);
+        ]);
     }
     */
 }

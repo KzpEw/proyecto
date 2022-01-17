@@ -53,6 +53,8 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Edad</th>
                     <th>Teléfono</th>
                     <th>Correo electrónico</th>
                     <th>DNI</th>
@@ -67,6 +69,8 @@
                         <td>{{$socio->id}}</td>
                         <td>{{$socio->nombre}}</td>
                         <td>{{$socio->apellidos}}</td>
+                        <td>{{$socio->f_nacimiento}}</td>
+                        <td>{{$socio->edad}}</td>
                         <td>{{$socio->telefono}}</td>
                         <td>{{$socio->email}}</td>
                         <td>{{$socio->dni}}</td>

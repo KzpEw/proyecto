@@ -10,7 +10,7 @@ class LibroFactory extends Factory
     public function definition()
     {
         return [
-            'titulo'            => $this->faker->sentence(),
+            'titulo'            => $this->faker->word(),
             'editorial'         => $this->faker->company(),
             'autor'             => $this->faker->name(),
         ];

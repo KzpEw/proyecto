@@ -13,6 +13,7 @@ class CreateSociosTable extends Migration
             $table->id();
             $table->string('nombre',100);
             $table->string('apellidos',100);
+            $table->date('f_nacimiento',20);
             $table->string('email',50);
             $table->string('dni',10);
             $table->string('telefono',20);

@@ -12,6 +12,7 @@ class SocioFactory extends Factory
         return [
             'nombre'            => $this->faker->name(),
             'apellidos'         => $this->faker->lastname(),
+            'f_nacimiento'      => $this->faker->date($format = 'd-m-Y'),
             'dni'               => $this->faker->dni,
             'email'             => $this->faker->email(),
             'telefono'          => $this->faker->PhoneNumber(),
