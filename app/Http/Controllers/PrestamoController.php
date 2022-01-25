@@ -20,7 +20,6 @@ class PrestamoController extends Controller
         $socios = Socio::all();
         $libros = Libro::all();
         return view('prestamos.create', compact('socios', 'libros'));
-
     }
 
     public function store(Request $request)

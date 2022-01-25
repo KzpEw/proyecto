@@ -17,9 +17,6 @@ class PrestamoFactory extends Factory
             'id_libro'                   => Libro::all()->unique()->random()->id,
             'fecha_prestamo'             => $this->faker->date($format = 'd-m-Y'),
             'fecha_devolucion'           => $this->faker->date($format = 'd-m-Y'), 
-            
-            //'fecha_prestamo'             => $this->faker->dateTimeThisYear($startdate = '-30 days'),
-            //'fecha_devolucion'           => $this->faker->date(clone $startDate)->modify('+1 day'),
         ];
     }
 }

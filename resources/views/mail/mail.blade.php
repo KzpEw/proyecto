@@ -4,6 +4,6 @@
     </head>    
     <body>
         <h1>Correo electronico</h1>
-        <p>Test</p>
+        <p>Esto es un correo de prueba</p>
     </body>
 </html>

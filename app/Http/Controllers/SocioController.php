@@ -74,14 +74,5 @@ class SocioController extends Controller
         Socio::find($socio->id)->delete();
         return redirect()->route('socios.index');
     }
-    
-    /*
-    public function sendemail(){
-        $email = Socio::find('{{$socio->email}}');
-        Mail::to($email)->send(new MailMailable);
-        return response()->json([
-            'message' => 'Email enviado.'
-        ]);
-    }
-    */
+
 }
