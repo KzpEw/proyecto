@@ -41,11 +41,11 @@
         </div>
         <div class="form-group">
             <label for="fecha_prestamo">Fecha prestamo</label>
-            <input type="text" class="form-control" id="fecha_prestamo" name="fecha_prestamo" placeholder="fecha_prestamo" value="{{old('fecha_prestamo')}}">
+            <input type="date" class="form-control" id="fecha_prestamo" name="fecha_prestamo" placeholder="fecha_prestamo" value="{{old('fecha_prestamo')}}">
         </div>
         <div class="form-group">
             <label for="fecha_devolucion">Fecha devolucion</label>
-            <input type="text" class="form-control" id="fecha_devolucion" name="fecha_devolucion" placeholder="fecha_devolucion" value="{{old('fecha_devolucion')}}">
+            <input type="date" class="form-control" id="fecha_devolucion" name="fecha_devolucion" placeholder="fecha_devolucion" value="{{old('fecha_devolucion')}}">
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
         <a href="{{url('/prestamos')}}" class="btn btn-secondary">Cancelar</a>
